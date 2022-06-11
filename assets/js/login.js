@@ -37,31 +37,32 @@ $(function () {
             username:$('#form_reg [name=username]').val(), 
             password:$('#form_reg [name=password]').val(),
           },
-          success: res => {
-              console.log(res);
+          success: (res) => {
+              // console.log(res);
             const { status,message } = res
             if(status !==0) return layer.msg(message)
             layer.msg(message)
+            $('#link_login').click()
           }
       })
-      $('#link_login').click()
+      
   })
 
-  $('#form_login').submit(function(e) {
+  $('#form_login').submit((e) => {
       e.preventDefault();
     //   console.log(e);
     //   console.log($(this).serialize);
       $.ajax({
           type: 'POST',
           url:'/api/login',
-          data: $(this).serialize,
-          success: res => {
-              console.log(res);
+          data: $('#form_login').serialize(),
+          success: (res) => {
+              // console.log(res);
             const { status , token } = res
             if(status !== 0) return layer.msg('登录失败');
             layer.msg('登录成功');
-            localStorage.setItem('token',res.token);
-            localStorage.href ='/index.html'
+            localStorage.setItem("token", res.token);
+            location.href ='/index.html'
           }
       })
   })
