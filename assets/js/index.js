@@ -42,5 +42,8 @@ $("#btnLogout").click(() => {
         }
     );
 });
+function change() {
+    $('#change').addClass('layui-this').next().removeClass('layui-this')
+}
 
 getUserInfo()
